@@ -62,10 +62,12 @@ class Player:
         return self
 
     def showScore(self):
-        
         currentScore = 0
         for card in self.hand:
             currentScore += card.getValue()
-        print("current score", currentScore)
+        if currentScore > 21:
+            print("current score", currentScore, " you busted")
+        else:
+            print("current score", currentScore)
         return currentScore
 

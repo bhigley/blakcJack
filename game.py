@@ -9,11 +9,11 @@ class Game:
 
     def __init__(self, players: list=None):
         self.deck = Deck()
-        if players is not None:
-            for i in range(len(players)):
-                self.players.append(players[i])
-        else: # only one player no name
-            self.players.append('Player1')
+        # if players is not None:
+        #     for i in range(len(players)):
+        #         self.players.append(players[i])
+        # else: # only one player no name
+        #     self.players.append('Player1')
     
     def updateCurrentPlayer(self):
         if self.currentPlayer < len(self.players): # not at the last player
@@ -29,4 +29,8 @@ class Game:
 
     def dealerTurn(self):
         dealer = Player('Dealer', None)
+
+    def startingDeal(self):
+        for player in self.players:
+            print(player.draw(self.deck))
         
