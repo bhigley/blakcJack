@@ -1,39 +1,13 @@
-# class Player(object):
-#     def __init__(self, name):
-#         self.name = name
-#         self.hand = []
-
-#     def sayHello(self):
-#         print("Hi! My name is {}".format(self.name))
-#         return self
-
-#     # Draw n number of cards from a deck
-#     # Returns true in n cards are drawn, false if less then that
-#     def draw(self, deck, num=1):
-#         for _ in range(num):
-#             card = deck.deal()
-#             if card:
-#                 self.hand.append(card)
-#             else: 
-#                 return False
-#         return True
-
-#     # Display all the cards in the players hand
-#     def showHand(self):
-#         print("{}'s hand: {}".format(self.name, self.hand))
-#         return self
-
-#     def discard(self):
-#         return self.hand.pop()
-
 
 class Player:
     playerName = ""
+    bust = False
     hand = []
     bank = 0
+    bet = 0
 
 
-    def __init__(self, name, startingBank=0):
+    def __init__(self, name, startingBank=3000):
         self.playerName = name
         self.bank = startingBank
 
@@ -55,19 +29,30 @@ class Player:
         else:
             self.bank = self.bank - wager
 
-    def showHand(self):
+    def showHand(self, isDealer=False):
         # print("{}'s hand: {}".format(self.playerName, self.hand))
-        for card in self.hand:
-            print(card.show())
+        if isDealer:
+            for i in range(len(self.hand) - 1):
+               print(self.hand[i].show()) 
+        else:
+            for card in self.hand:
+                print(card.show())
         return self
 
-    def showScore(self):
+    def showScore(self, isDealer=False):
         currentScore = 0
         for card in self.hand:
             currentScore += card.getValue()
+        for card in self.hand:
+            if currentScore > 21 and card.value == 1: # checking if there is an ace in hand
+                currentScore = currentScore - 10
+        # if isDealer is False:
+        #     if currentScore > 21:
+        #         self.bust = True
+        #         print("current score", currentScore, " you busted")
+        #     else:
+        #         print("current score", currentScore)
         if currentScore > 21:
-            print("current score", currentScore, " you busted")
-        else:
-            print("current score", currentScore)
+            self.bust = True
         return currentScore
 

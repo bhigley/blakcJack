@@ -8,13 +8,13 @@ class Card():
 
     def __init__(self, suit, value):
         if suit is 0:
-            self.suit = 'heart'
+            self.suit = 'hearts'
         elif suit is 1:
-            self.suit = 'club'
+            self.suit = 'clubs'
         elif suit is 2:
-            self.suit = 'diamond'
+            self.suit = 'diamonds'
         else:
-            self.suit = 'spade'
+            self.suit = 'spades'
         self.value = value + 1
 
     def getValue(self):
@@ -29,16 +29,6 @@ class Card():
         else:
             val = self.value
         return val
-
-    # def print(self):
-    #     if self.value <= 10:
-    #         print(self.value, self.suit)
-    #     elif self.value is 11:
-    #         print('jack', self.suit)
-    #     elif self.value is 12:
-    #         print('queen', self.suit)
-    #     elif self.value is 13:
-    #         print('king', self.suit)
 
     def show(self):
         if self.value == 1:
